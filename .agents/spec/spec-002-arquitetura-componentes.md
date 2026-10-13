@@ -36,7 +36,7 @@ A escolha pela divisão em Controller-Service-Repository atende perfeitamente ao
 ```mermaid
 flowchart TD
     %% Atores e Clientes
-    Cliente Web -->|Requisições HTTP REST (JSON)| Controller
+    ClienteWeb["Cliente Web"] -->|Requisições HTTP REST (JSON)| Controller
 
     %% Backend Camadas
     subgraph Backend [Backend API (Arquitetura em Camadas)]
