@@ -36,18 +36,23 @@ A escolha pela divisão em Controller-Service-Repository atende perfeitamente ao
 ```mermaid
 flowchart TD
     %% Atores e Clientes
-   ClienteWeb["Cliente Web"] -->|Requisições HTTP REST - JSON| Controller
+    ClienteWeb["Cliente Web"] -->|Requisições HTTP REST - JSON| Controller
 
-    %% Backend Camadas
-    subgraph Backend [Backend API (Arquitetura em Camadas)]
+    %% Backend em Camadas
+    subgraph Backend["Backend API - Arquitetura em Camadas"]
         direction TB
-        Controller[Controllers\nValidam inputs e rotas]
-        Service[Services\nRegras de Negócio e Domínio]
-        Repository[Repositories\nAcesso a Dados abstrato]
-        
+        Controller["Controller<br/>Valida inputs e rotas"]
+        Service["Service<br/>Regras de Negócio e Domínio"]
+        Repository["Repository<br/>Acesso a Dados abstrato"]
+
         Controller -->|Chama métodos| Service
         Service -->|Persiste/Busca Entidades| Repository
     end
+
+    %% Infraestrutura
+    Repository -->|Queries SQL| BD["Banco de Dados Relacional"]
+    Service -.->|Requisição HTTP| APIExterna["APIs Externas - TMDB, IGDB"]
+```
 
     %% Infraestrutura
     Repository -->|Queries SQL| BD[(Banco de Dados\nRelacional)]
